@@ -9,6 +9,7 @@ A Python tool for detecting proper names and performing find-and-replace operati
 ## Requirements
 
 - **Python 3.13+**
+- **uv** - For package and environment management
 - **spaCy 3.8.7+** - For natural language processing and named entity recognition
 
 ## Installation
@@ -26,7 +27,7 @@ uv sync
 
 3. Download the spaCy English language model:
 ```bash
-python -m spacy download en_core_web_lg
+uv run python -m spacy download en_core_web_lg
 ```
 
 ## Usage
@@ -38,7 +39,7 @@ The tool has two main modes: **Detection Mode** and **Find & Replace Mode**.
 Find and list all proper nouns in a file with their line and column numbers:
 
 ```bash
-python find_proper_nouns.py input.txt
+uv run python find_proper_nouns.py input.txt
 ```
 
 Example output:
@@ -76,27 +77,27 @@ Detected entity types include:
 
 #### Basic replacement:
 ```bash
-python find_proper_nouns.py input.txt --find "John" --replace "Jane"
+uv run python find_proper_nouns.py input.txt --find "John" --replace "Jane"
 ```
 
 #### Dry-run (preview changes without modifying):
 ```bash
-python find_proper_nouns.py input.txt --find "John" --replace "Jane" --dry-run
+uv run python find_proper_nouns.py input.txt --find "John" --replace "Jane" --dry-run
 ```
 
 #### Case-sensitive matching:
 ```bash
-python find_proper_nouns.py input.txt --find "John" --replace "Jane" --case-sensitive
+uv run python find_proper_nouns.py input.txt --find "John" --replace "Jane" --case-sensitive
 ```
 
 #### Create a backup before replacing:
 ```bash
-python find_proper_nouns.py input.txt --find "John" --replace "Jane" --backup
+uv run python find_proper_nouns.py input.txt --find "John" --replace "Jane" --backup
 ```
 
 #### Combined options:
 ```bash
-python find_proper_nouns.py input.txt --find "Google" --replace "Microsoft" --dry-run --backup --case-sensitive
+uv run python find_proper_nouns.py input.txt --find "Google" --replace "Microsoft" --dry-run --backup --case-sensitive
 ```
 
 ## Options
@@ -129,12 +130,12 @@ John and Jane are now colleagues at Microsoft in Seattle.
 
 Run detection:
 ```bash
-python find_proper_nouns.py test_input.txt
+uv run python find_proper_nouns.py test_input.txt
 ```
 
 Try a dry-run replacement:
 ```bash
-python find_proper_nouns.py test_input.txt --find "John" --replace "John Doe" --dry-run
+uv run python find_proper_nouns.py test_input.txt --find "John" --replace "John Doe" --dry-run
 ```
 
 ## Features
@@ -156,6 +157,7 @@ This is an early-stage project. The current functionality provides:
 
 ## Notes
 
+- This project uses **uv** for package management. All Python commands should be prefixed with `uv run`
 - Ensure the spaCy English large model (`en_core_web_lg`) is downloaded before running
 - Use `--dry-run` to preview changes before making them permanent
 - Use `--backup` to create timestamped backup files of modified files
